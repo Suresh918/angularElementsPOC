@@ -9,7 +9,7 @@ const concat = require('concat');
   ];
   await fs.ensureDir('elements-dist');
   await concat(files, 'elements-dist/custom-elements.js');
-  await fs.copyFile('./dist/styles.css', 'elements-dist/styles.css');
-  await fs.copy('./dist/assets/', 'elements-dist/assets/' );
+  await fs.copyFile('./dist/angularElementsPOC/styles.css', 'elements-dist/styles.css');
+  await fs.copy('./dist/angularElementsPOC/assets/', 'elements-dist/assets/' );
 
 })();
