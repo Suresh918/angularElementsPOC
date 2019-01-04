@@ -1,0 +1,15 @@
+<mat-form-field fxFlex="30%">
+  <input [formControl]="control" [placeholder]="controlConfiguration?.placeholder" [required]="hasValidator()" matInput>
+  <span matPrefix>{{ controlConfiguration?.prefix }}</span>
+  <span matSuffix>{{ controlConfiguration?.suffix }}</span>
+  <mat-hint align="end" *ngIf="controlConfiguration?.validatorConfiguration?.maxLength">
+    {{ control?.value?.length || 0 }}/{{controlConfiguration?.validatorConfiguration?.maxLength}}</mat-hint>
+  <mat-error *ngIf="control?.errors?.maxlength">{{ controlConfiguration?.placeholder }} should be less than or equal to
+    {{ control?.errors?.maxlength?.requiredLength }} characters
+  </mat-error>
+  <mat-error *ngIf="control?.errors?.required">{{ controlConfiguration?.placeholder }} is required</mat-error>
+  <mat-icon *ngIf="controlConfiguration?.help" class="tooltip" matSuffix [matTooltip]="controlConfiguration?.help"
+            matTooltipPosition="before">
+    help_outline
+  </mat-icon>
+</mat-form-field>

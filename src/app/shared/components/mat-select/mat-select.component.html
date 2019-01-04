@@ -1,0 +1,21 @@
+<div fxLayout="column" fxLayoutGap="0.5rem" fxFlex="30%">
+  <mat-form-field>
+    <mat-select [formControl]="control" [placeholder]="controlConfiguration?.placeholder" [required]="hasValidator()"
+                (selectionChange)="clearDescription()">
+      <mat-option> -- None -- </mat-option>
+      <mat-option *ngFor="let enumerationItem of controlConfiguration?.enumeration" [value]="enumerationItem.name">
+        {{ enumerationItem.label }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="control?.errors?.required">{{ controlConfiguration?.placeholder }} is required</mat-error>
+    <mat-icon *ngIf="controlConfiguration?.help" class="tooltip" matSuffix [matTooltip]="controlConfiguration?.help"
+              matTooltipPosition="before">
+      help_outline
+    </mat-icon>
+  </mat-form-field><!--
+  <app-mat-input-text-area fxFlex
+                          *ngIf="control?.value && control?.value?.length>0 && descriptionControl &&  showDescriptionForOptions?.indexOf(control?.value) !== -1"
+                          [control]="descriptionControl"
+                          [controlConfiguration]="descriptionControlConfiguration">
+  </app-mat-input-text-area>-->
+</div>

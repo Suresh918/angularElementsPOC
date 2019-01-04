@@ -1,0 +1,27 @@
+<div fxLayout="column" fxLayoutGap="0.5rem" fxFill>
+  <div fxLayout="row">
+    <label [ngClass]="{'app-icon--error-red':(control?.touched && control?.errors?.required)}" class="label">
+      {{ controlConfiguration?.placeholder }}
+      <span
+        [ngClass]="{'app-icon--error-red': (control?.touched && control?.errors?.required)}"
+        *ngIf="hasValidator()">*</span>
+    </label>
+    <mat-icon *ngIf="controlConfiguration?.help" class="tooltip"
+              matSuffix
+              [matTooltip]="controlConfiguration?.help"
+              matTooltipPosition="before">help_outline</mat-icon>
+  </div>
+  <div [fxLayout]="controlConfiguration?.enumeration?.length > 3 ? 'column' : 'row'" fxLayoutGap="1rem"
+       fxLayoutAlign="start start">
+      <mat-button-toggle-group #group1="matButtonToggleGroup" [formControl]="control" (change)="clearDescription()">
+      <mat-button-toggle *ngFor="let enumerationItem of controlConfiguration?.enumeration" color="primary"
+                         mat-raised-button [value]="enumerationItem.name">
+        {{ enumerationItem.label }}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+   <!-- <app-mat-input-text-area *ngIf="descriptionControl && showDescriptionForOptions?.indexOf(control?.value) !== -1"
+                            [control]="descriptionControl"
+                            [controlConfiguration]="descriptionControlConfiguration" fxFlex fxFill>
+    </app-mat-input-text-area>-->
+  </div>
+</div>
